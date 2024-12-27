@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner Winner Lottery</title>
+    <style>
+        /* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgIBwcHCAcHBwcHBxYHBwcHCA8ICQcKIBEiIiARExoYHSggGBolGxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NDw4PFSsZHx0tLSsrLTcrLS0rKysrLS0rKysrKzcrKystKysrKys3Ky0rKy0rKystLSsrLSs3LTcrK//AABEIASsAqAMBIgACEQEDEQH/xAAYAAEBAQEBAAAAAAAAAAAAAAAAAQIDB//EABUQAQEAAAAAAAAAAAAAAAAAAAAB/8QAGgEBAQEBAQEBAAAAAAAAAAAAAAECAwQFBv/EABkRAQEBAQEBAAAAAAAAAAAAAAABEQISA//aAAwDAQACEQMRAD8A8WAfonEAAAAAAAAAAAAAAAAAAAAEE0UQBRAFEAUQNFEDRRA1VEDRRA0UQNRRA0AGdUAAANAA0AE0BA0UQTRRA0UQNFEF0UA0BBBRBRRBNFQE0AE1QQZ0UQTRRA0UQNFAbgALqAAAAACaoIM2gCMWiiDN6VUBPQAHoGmVb4qKIN6KgGigNAAgIDNoAjFqgI52gAzaoIM6KIGitSsK1z3lGhFd5dZAF0UQbFQEoAjFqgI5WgCOdqgDFoCDOqogaKIGiytRkldeO8RsRXfUAHVABmglVGKqBRyqoA50EVGQAZUAQBBNFEVdGpRkdufpkxMdAHrZAEoIqMVUCjlVQBgAEwEUSxUAYogDIAAogujqA+iwACiKjFEFRiwEUYxQAwQVEsBFRzqoFHOgAyoAqOog+jrKgKCKIIAzYIKM4qCogJVSs0EVHLpUoDnQRajKqIIOkqsStvbx3sZsAHXUUQNABAAQEBmqIqMUEVK5WqgFc6qAMAACrKg6zrLqNiSq9HPexFEG9FEDRUBNAEZtAEc7VEBztBFRztUAQAAUQa0VqVgXnrKNgO/plUBfQAiehRBm9KIDFoAjFqgDIAAAAAAAqwUQb9IogvoVATQBGbVVATQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/9k='); /* Add your background image here */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Arrange content vertically */
+    align-items: center; /* Center horizontally */
+    min-height: 100vh;
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+header {
+    width: 100%;
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.container {
+    text-align: center;
+    max-width: 900px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.476);
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 4rem;
+    color: #0099FF; /* A softer blue */
+    text-shadow: 0 0 15px rgba(0, 153, 255, 0.6); /* Softer, more modern glow */
+    margin-bottom: 20px;
+    animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+h2, h3 {
+    font-size: 3rem;
+    color: #00BFFF; /* Slightly lighter blue */
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 15px rgba(0, 153, 255, 0.5), 0 0 30px rgba(0, 153, 255, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(0, 153, 255, 0.8), 0 0 35px rgba(0, 153, 255, 0.6);
+    }
+}
+
+p {
+    font-size: 1.5rem;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.btn {
+    font-size: 1.2rem;
+    background: linear-gradient(45deg, #1a73e8, #003366); /* Smooth blue twist */
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #003366, #1a73e8); /* Reverse the gradient for effect */
+    transform: translateY(-3px); /* Makes it 'pop' */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3); /* Intense shadow on hover */
+}
+
+
+.btn:hover {
+    background-color: #155fa;
+}
+
+.footer {
+    margin-top: 30px;
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.footer a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.win-container {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00FF00;  /* Bright green */
+    text-shadow: 0 0 15px rgba(0, 255, 0, 0.5); /* Softer green glow */
+}
+
+.game-container {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.game-btn {
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.game-btn:hover {
+    background-color: #155fa;
+}
+
+.reaction-time {
+    color: #00BFFF; /* Lighter blue for contrast */
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.reset-btn {
+    margin-top: 20px;
+    font-size: 1.25rem;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-btn:hover {
+    background-color: #d32f2f;
+}
+
+canvas {
+    border: 2px solid #0099FF;
+    display: block;
+    margin: 0 auto;
+    background-color: white;
+}
+
+#sliderContainer {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#angleSlider {
+    width: 400px;
+}
+
+#pissButton {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    background: linear-gradient(45deg, #FFD700, #FFA500); /* Gold to golden-orange gradient */
+    color: #FFFACD; /* Pale yellow for contrast */
+    border: 2px solid #DAA520; /* Goldenrod border */
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 223, 0, 0.5); /* Subtle shadow and glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Slightly embossed look */
+}
+
+#pissButton:hover {
+    background: linear-gradient(45deg, #FFA500, #FFD700); /* Reverse the gradient */
+    transform: translateY(-4px) scale(1.2); /* Pop effect */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 223, 0, 0.7); /* Enhanced glow on hover */
+}
+.sliderLabel {
+    font-size: 18px;
+}
+
+#imageContainer {
+    position: absolute;
+    bottom: -300px;
+    left: 240px;
+    width: 100px;
+    height: 100px;
+}
+
+#imageContainer img {
+    width: 100%;
+    height: 100%;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>HELLO!</h1>
+        <p>Thanks so much for scanning the QR code—you won't regret it!😍</p>
+        <p>This is a community-based website, so PLEASE email below if you have feedback!👇🙏</p>
+
+        <h2>MINIGAMES</h2>
+        <p>Recommended by y🤝u</p>
+
+        <h1 style="text-align: center;">PissMasters Game</h1>
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+
+        <div id="sliderContainer">
+            <div class="sliderLabel">Adjust the Launch Angle (0 - 90 degrees):</div>
+            <input type="range" id="angleSlider" min="0" max="91" value="45">
+            <div id="sliderValue">Slider Value: 45</div>
+        </div>
+        <div id="buttonContainer">
+            <button id="pissButton">PISS</button>
+        </div>
+
+        <div id="imageContainer">
+            <img src="data:image/jpeg;base64,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" alt="Image Holder" />
+        </div>
+
+        <!-- Reaction Time Mini-Game -->
+        <div class="game-container">
+            <h3>Reaction Time Game</h3>
+            <p>Click the button as fast as you can once it appears! Play against friends!</p>
+            <button class="game-btn" id="reactionButton">Click Me!</button>
+            <div class="game-message" id="reactionMessage"></div>
+            <button class="reset-btn" id="resetButton" style="display: none;">Play Again</button>
+        </div>
+
+        <p>🥇: 100ms</p>
+        <p>🥈: 193ms</p>
+        <p>🥉: 211ms</p>
+
+       <p>👇Have a cool game idea? Email us your suggestions!👇</p>
+
+<!-- Email text -->
+<p id="email-text">crazyqr384@gmail.com</p>
+<img src="data:image/jpeg;base64,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">
+<!-- Button to copy email --></br>
+<button class="btn" onclick="copyEmail()">Copy Email</button>
+
+<!-- Gmail button to send email -->
+<a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSMSqcwLFLwbZfVpQTfzblFrwvWgKllHHlLrFQFZcDzRbGnKQctBmbTrnWmsRTNFqwPXpRJF">
+    <button class="btn">Gmail Button</button>
+</a>
+
+        <h1>Coming soon... (unless you hate them)</h1>
+
+        <div class="game-container">
+            <h2>Drawing Contest!</h2>
+            
+        </div>
+
+        <div class="game-container">
+            <h2>Winner Winner!</h2>
+           
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        let reactionButton = document.getElementById('reactionButton');
+        let reactionMessage = document.getElementById('reactionMessage');
+        let resetButton = document.getElementById('resetButton');
+        let ball = { x: 50, y: 350, speedX: 0, speedY: 0, gravity: 1 };
+        let target = { x: Math.random() * canvas.width, y: Math.random() * 300, width: 30, height: 30 };
+        let isShooting = false;
+        let power = 30;
+        let angle = 45;
+        let startTime, endTime;
+
+        const audio69 = new Audio('moan-made-with-voicemod-mp3.mp3');
+        const audioDefault = new Audio('water-droplet-drip.mp3');
+        const hitSound = new Audio('sounds/yippee-tbh%20(1).mp3');
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "yellow";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawTarget() {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(target.x, target.y, target.width, target.height);
+        }
+
+        function resetBall() {
+            ball.x = 50;
+            ball.y = 350;
+            ball.speedX = 0;
+            ball.speedY = 0;
+            isShooting = false;
+        }
+
+        function updateBall() {
+            if (isShooting) {
+                ball.x += ball.speedX;
+                ball.y -= ball.speedY;
+                ball.speedY -= ball.gravity;
+
+                if (ball.x > target.x && ball.x < target.x + target.width &&
+                    ball.y > target.y && ball.y < target.y + target.height) {
+                    hitSound.play();
+                    alert("BOOM! You pissed on the target!");
+                    target.x = Math.random() * canvas.width;
+                    target.y = Math.random() * 300;
+                    resetBall();
+                }
+
+                if (ball.y > canvas.height || ball.x > canvas.width || ball.x < 0) {
+                    resetBall();
+                }
+            }
+        }
+
+        function calculateAngleAndSpeed(sliderValue) {
+            const angleInRadians = sliderValue * Math.PI / 180;
+            const speedX = power * Math.cos(angleInRadians);
+            const speedY = power * Math.sin(angleInRadians);
+            return { speedX, speedY };
+        }
+
+        document.getElementById("angleSlider").addEventListener("input", (event) => {
+            const sliderValue = event.target.value;
+            let displayValue = "Slider Value: " + sliderValue;
+
+            if (sliderValue == 69) {
+                displayValue += " 😏";
+            }
+
+            if (sliderValue == 91) {
+                displayValue += " (in case the target is behind you)";
+            }
+
+            document.getElementById("sliderValue").textContent = displayValue;
+        });
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+            drawTarget();
+            updateBall();
+        }
+
+        document.getElementById("pissButton").addEventListener("click", function () {
+            const sliderValue = document.getElementById("angleSlider").value;
+            const { speedX, speedY } = calculateAngleAndSpeed(sliderValue);
+
+            if (sliderValue == 69) {
+                audio69.play();
+            } else {
+                audioDefault.play();
+            }
+
+            ball.speedX = speedX;
+            ball.speedY = speedY;
+            isShooting = true;
+        });
+
+        window.addEventListener("keydown", function (e) {
+            if (e.key === " " && !isShooting) {
+                const sliderValue = document.getElementById("angleSlider").value;
+                const { speedX, speedY } = calculateAngleAndSpeed(sliderValue);
+
+                if (sliderValue == 69) {
+                    audio69.play();
+                } else {
+                    audioDefault.play();
+                }
+
+                ball.speedX = speedX;
+                ball.speedY = speedY;
+                isShooting = true;
+            }
+        });
+
+        function gameLoop() {
+            draw();
+            requestAnimationFrame(gameLoop);
+        }
+
+        gameLoop();
+		
+		function copyEmail() {
+        // Get the email text
+        var emailText = document.getElementById("email-text").innerText;
+        
+        // Create a temporary input to copy text to clipboard
+        var tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = emailText;
+        tempInput.select();
+        document.execCommand("copy");
+        
+        // Remove the temporary input
+        document.body.removeChild(tempInput);
+        
+        // Optional: Alert the user
+        alert("Copied!!!!!!!!!!!!!!!");
+    }
+    </script>
+</body>
+</html>
+
+
